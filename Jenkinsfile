@@ -7,11 +7,13 @@ pipeline {
                 git url: 'https://github.com/iShelar/Voice-Agent---Backend.git', branch: 'main'
             }
         }
-        def scannerHome = tool 'SonarQubeScanner'
         stage('SonarQube Code Analysis') {
             steps {
-                withSonarQubeEnv('Local Voice Agent Config') { // Name must match Jenkins configuration
-                    sh "${scannerHome}/bin/sonar-scanner"
+                script {
+                    def scannerHome = tool 'SonarQubeScanner'
+                    withSonarQubeEnv('SonarQube') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
                 }
             }
         }
