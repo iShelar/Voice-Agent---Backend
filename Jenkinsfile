@@ -9,7 +9,7 @@ pipeline {
         }
         stage('SonarQube Code Analysis') {
             steps {
-                withSonarQubeEnv('MyLocalSonarQube') { // Name must match Jenkins configuration
+                withSonarQubeEnv('Local Voice Agent Config') { // Name must match Jenkins configuration
                     sh 'sonar-scanner'
                 }
             }
